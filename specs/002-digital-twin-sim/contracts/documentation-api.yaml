@@ -1,0 +1,200 @@
+openapi: 3.0.0
+info:
+  title: Digital Twin Simulation Documentation API
+  description: API for accessing educational content about Gazebo and Unity simulation
+  version: 1.0.0
+servers:
+  - url: https://api.digital-twin-sim.com/v1
+    description: Production server
+  - url: https://staging-api.digital-twin-sim.com/v1
+    description: Staging server
+
+paths:
+  /chapters:
+    get:
+      summary: Get all chapters in the Digital Twin Simulation module
+      description: Retrieve a list of all chapters with their metadata
+      responses:
+        '200':
+          description: A list of chapters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Chapter'
+
+  /chapters/{chapterId}:
+    get:
+      summary: Get a specific chapter
+      description: Retrieve the content of a specific chapter by its ID
+      parameters:
+        - name: chapterId
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [physics-simulation-gazebo, digital-twins-hri-unity, sensor-simulation-validation]
+          description: The ID of the chapter
+      responses:
+        '200':
+          description: Chapter content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chapter'
+        '404':
+          description: Chapter not found
+
+  /chapters/{chapterId}/exercises:
+    get:
+      summary: Get exercises for a chapter
+      description: Retrieve all exercises associated with a specific chapter
+      parameters:
+        - name: chapterId
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [physics-simulation-gazebo, digital-twins-hri-unity, sensor-simulation-validation]
+          description: The ID of the chapter
+      responses:
+        '200':
+          description: List of exercises for the chapter
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Exercise'
+
+  /chapters/{chapterId}/code-examples:
+    get:
+      summary: Get code examples for a chapter
+      description: Retrieve all code examples associated with a specific chapter
+      parameters:
+        - name: chapterId
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [physics-simulation-gazebo, digital-twins-hri-unity, sensor-simulation-validation]
+          description: The ID of the chapter
+      responses:
+        '200':
+          description: List of code examples for the chapter
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CodeExample'
+
+components:
+  schemas:
+    Chapter:
+      type: object
+      required:
+        - id
+        - title
+        - content
+        - learningObjectives
+        - prerequisites
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the chapter
+          example: "physics-simulation-gazebo"
+        title:
+          type: string
+          description: Display title of the chapter
+          example: "Physics Simulation with Gazebo"
+        content:
+          type: string
+          description: Markdown content of the chapter
+          example: "# Physics Simulation with Gazebo\n\nGazebo provides..."
+        learningObjectives:
+          type: array
+          items:
+            type: string
+          description: What the user should learn from this chapter
+          example: ["Set up Gazebo environments", "Configure physics properties"]
+        prerequisites:
+          type: array
+          items:
+            type: string
+          description: What the user should know before reading
+          example: ["Basic ROS knowledge", "Robotics fundamentals"]
+        examples:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeExample'
+        exercises:
+          type: array
+          items:
+            $ref: '#/components/schemas/Exercise'
+
+    CodeExample:
+      type: object
+      required:
+        - id
+        - language
+        - code
+        - description
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the example
+          example: "gazebo-world-file"
+        language:
+          type: string
+          description: Programming language of the example
+          example: "xml"
+        code:
+          type: string
+          description: The actual code
+          example: "<?xml version='1.0'?>\n<sdf version='1.7'>\n  <world name='default'>..."
+        description:
+          type: string
+          description: Explanation of what the code does
+          example: "Gazebo world file with physics properties"
+        tags:
+          type: array
+          items:
+            type: string
+          description: Categories for the example
+          example: ["gazebo", "physics", "environment"]
+
+    Exercise:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - difficulty
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the exercise
+          example: "exercise-2-1"
+        title:
+          type: string
+          description: Title of the exercise
+          example: "Create a Basic Gazebo Environment"
+        description:
+          type: string
+          description: What the user needs to do
+          example: "Create a Gazebo world file with basic physics properties"
+        difficulty:
+          type: string
+          enum: [beginner, intermediate, advanced]
+          description: Difficulty level of the exercise
+          example: "beginner"
+        expectedOutcome:
+          type: string
+          description: What the result should be
+          example: "A working Gazebo environment with realistic physics"
+        solution:
+          type: string
+          description: Optional solution for reference
+          example: "<?xml version='1.0'?>\n<sdf version='1.7'>\n  <world name='..."

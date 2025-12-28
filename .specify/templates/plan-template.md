@@ -31,7 +31,29 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+### Spec-First Workflow Compliance
+- [ ] All functionality defined in specifications before implementation
+- [ ] Clear requirements and acceptance criteria documented
+
+### Technical Accuracy Verification
+- [ ] All content and code will be technically accurate from official sources
+- [ ] No unverified claims or assumptions planned
+
+### Developer Focus Validation
+- [ ] Implementation approach prioritizes clear, developer-focused documentation
+- [ ] User experience optimized for learning and implementation
+
+### Reproducible Setup Compliance
+- [ ] Setup and deployment processes will be fully reproducible
+- [ ] Environment configurations will be version-controlled and documented
+
+### GitHub-Based Control Verification
+- [ ] All source code and documentation managed through GitHub repositories
+- [ ] Branching strategy follows established patterns with pull requests required
+
+### No Hallucination Check
+- [ ] RAG chatbot responses will be grounded only in book content or user-selected text
+- [ ] Responses will be traceable to specific sources in the knowledge base
 
 ## Project Structure
 

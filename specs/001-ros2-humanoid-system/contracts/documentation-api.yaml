@@ -1,0 +1,200 @@
+openapi: 3.0.0
+info:
+  title: ROS 2 Humanoid System Documentation API
+  description: API for accessing ROS 2 educational content about humanoid robotics
+  version: 1.0.0
+servers:
+  - url: https://api.ros2-humanoid-system.com/v1
+    description: Production server
+  - url: https://staging-api.ros2-humanoid-system.com/v1
+    description: Staging server
+
+paths:
+  /chapters:
+    get:
+      summary: Get all chapters in the ROS 2 Humanoid System module
+      description: Retrieve a list of all chapters with their metadata
+      responses:
+        '200':
+          description: A list of chapters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Chapter'
+
+  /chapters/{chapterId}:
+    get:
+      summary: Get a specific chapter
+      description: Retrieve the content of a specific chapter by its ID
+      parameters:
+        - name: chapterId
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [introduction-to-ros2, communication-model, robot-structure-urdf]
+          description: The ID of the chapter
+      responses:
+        '200':
+          description: Chapter content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chapter'
+        '404':
+          description: Chapter not found
+
+  /chapters/{chapterId}/exercises:
+    get:
+      summary: Get exercises for a chapter
+      description: Retrieve all exercises associated with a specific chapter
+      parameters:
+        - name: chapterId
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [introduction-to-ros2, communication-model, robot-structure-urdf]
+          description: The ID of the chapter
+      responses:
+        '200':
+          description: List of exercises for the chapter
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Exercise'
+
+  /chapters/{chapterId}/code-examples:
+    get:
+      summary: Get code examples for a chapter
+      description: Retrieve all code examples associated with a specific chapter
+      parameters:
+        - name: chapterId
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [introduction-to-ros2, communication-model, robot-structure-urdf]
+          description: The ID of the chapter
+      responses:
+        '200':
+          description: List of code examples for the chapter
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CodeExample'
+
+components:
+  schemas:
+    Chapter:
+      type: object
+      required:
+        - id
+        - title
+        - content
+        - learningObjectives
+        - prerequisites
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the chapter
+          example: "introduction-to-ros2"
+        title:
+          type: string
+          description: Display title of the chapter
+          example: "Introduction to ROS 2 for Physical AI"
+        content:
+          type: string
+          description: Markdown content of the chapter
+          example: "# Introduction to ROS 2\n\nROS 2 (Robot Operating System 2)..."
+        learningObjectives:
+          type: array
+          items:
+            type: string
+          description: What the user should learn from this chapter
+          example: ["Explain what ROS 2 is", "Describe DDS concepts"]
+        prerequisites:
+          type: array
+          items:
+            type: string
+          description: What the user should know before reading
+          example: ["Basic robotics concepts", "Programming fundamentals"]
+        examples:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeExample'
+        exercises:
+          type: array
+          items:
+            $ref: '#/components/schemas/Exercise'
+
+    CodeExample:
+      type: object
+      required:
+        - id
+        - language
+        - code
+        - description
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the example
+          example: "simple-publisher-node"
+        language:
+          type: string
+          description: Programming language of the example
+          example: "python"
+        code:
+          type: string
+          description: The actual code
+          example: "import rclpy\nfrom std_msgs.msg import String\n\n# Create a publisher node..."
+        description:
+          type: string
+          description: Explanation of what the code does
+          example: "Simple ROS 2 publisher node that sends messages"
+        tags:
+          type: array
+          items:
+            type: string
+          description: Categories for the example
+          example: ["node", "publisher", "topic"]
+
+    Exercise:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - difficulty
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the exercise
+          example: "exercise-1-1"
+        title:
+          type: string
+          description: Title of the exercise
+          example: "Create a Simple Publisher"
+        description:
+          type: string
+          description: What the user needs to do
+          example: "Create a ROS 2 node that publishes a message to a topic every second"
+        difficulty:
+          type: string
+          enum: [beginner, intermediate, advanced]
+          description: Difficulty level of the exercise
+          example: "beginner"
+        expectedOutcome:
+          type: string
+          description: What the result should be
+          example: "A running node that publishes messages to a topic"
+        solution:
+          type: string
+          description: Optional solution for reference
+          example: "import rclpy\nfrom std_msgs.msg import String\n\n# Complete implementation..."

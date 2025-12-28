@@ -105,6 +105,7 @@
 <!--
   ACTION REQUIRED: Define measurable success criteria.
   These must be technology-agnostic and measurable.
+  Remember to align with constitution principles: spec-first workflow, technical accuracy, developer focus, reproducible setup, GitHub-based control, no hallucination.
 -->
 
 ### Measurable Outcomes
@@ -113,3 +114,12 @@
 - **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
 - **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
 - **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+
+### Constitution Alignment
+
+- **Spec-First Workflow**: [Ensure all functionality is defined in specifications before implementation]
+- **Technical Accuracy**: [Verify all content and code is technically accurate from official sources]
+- **Developer Focus**: [Confirm documentation is clear and developer-focused]
+- **Reproducible Setup**: [Validate that setup and deployment processes are fully reproducible]
+- **GitHub-Based Control**: [Confirm all code is managed through GitHub with proper PR process]
+- **No Hallucination**: [Ensure RAG chatbot responses are grounded only in verified sources]

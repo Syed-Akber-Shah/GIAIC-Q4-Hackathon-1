@@ -1,55 +1,50 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version change: 1.0.0 → 1.1.0
+- Modified principles: [PRINCIPLE_1_NAME] → Spec-First Workflow, [PRINCIPLE_2_NAME] → Technical Accuracy, [PRINCIPLE_3_NAME] → Developer Focus, [PRINCIPLE_4_NAME] → Reproducible Setup, [PRINCIPLE_5_NAME] → GitHub-Based Control, [PRINCIPLE_6_NAME] → No Hallucination
+- Added sections: RAG Chatbot Principles, Development Workflow
+- Removed sections: None
+- Templates requiring updates: ⚠ pending - .specify/templates/plan-template.md, .specify/templates/spec-template.md, .specify/templates/tasks-template.md
+- Follow-up TODOs: None
+-->
+# AI/Spec-Driven Book with Embedded RAG Chatbot Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Spec-First Workflow
+Spec-driven development using Spec-Kit Plus for all features and changes; All functionality must be defined in specifications before implementation; Clear requirements and acceptance criteria required before coding begins.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Technical Accuracy
+All content and code must be technically accurate, sourced from official documentation and verified sources; No unverified claims or assumptions in the book content; Code examples must be runnable and well-documented.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Developer Focus
+Clear, developer-focused writing that prioritizes practical understanding; Documentation must be accessible to developers of varying skill levels; User experience optimized for learning and implementation.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Reproducible Setup and Deployment
+All setup and deployment processes must be fully reproducible with clear, step-by-step instructions; Environment configurations must be version-controlled and documented; Deployment processes must be automated and reliable.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### GitHub-Based Source Control
+All source code and documentation managed through GitHub repositories; Branching strategy follows GitFlow or similar established patterns; Pull requests required for all changes with proper code review.
 
-### [PRINCIPLE_6_NAME]
+### No Hallucinated Responses
+RAG chatbot must be grounded only in book content or user-selected text; No hallucinated or fabricated responses allowed in the chatbot; Responses must be traceable to specific sources in the knowledge base.
 
+## RAG Chatbot Principles
 
-[PRINCIPLE__DESCRIPTION]
+- Book written with Docusaurus and deployed on GitHub Pages
+- RAG chatbot stack: OpenAI Agents/ChatKit, FastAPI, Neon Postgres, Qdrant Cloud
+- Chatbot responses must be grounded only in book content or user-selected text
+- End-to-end reproducibility of the entire system including RAG functionality
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Development Workflow
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- All specs implemented via Spec-Kit Plus following the spec-first workflow
+- Success criteria: Live book on GitHub Pages with fully functional embedded RAG chatbot
+- Code quality standards: Runnable, well-documented code with comprehensive testing
+- Deployment: GitHub Pages for documentation, with all components properly integrated
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+Constitution supersedes all other development practices and must be followed for all project work; Amendments require explicit documentation, approval from project stakeholders, and migration plan for existing code; All pull requests and code reviews must verify compliance with these principles; Use this constitution as the primary guidance document for all development decisions.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.1.0 | **Ratified**: 2025-01-01 | **Last Amended**: 2025-12-27
